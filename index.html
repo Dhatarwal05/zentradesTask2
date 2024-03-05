@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="" id="loginForm">
+            <image src="image.png" class="image" />
+            <!-- <h1 class="title">ZENTRADES</h1> -->
+            <div class="input-common">
+                <input type="text" class="text-box" placeholder="E-mail address"
+                required>
+
+                <input type="password" id="passwordInput" class="text-box" placeholder="Password" required>
+
+        </div>
+            <div class="remember">
+                <label> <input type="checkbox">Remember me</label>
+            </div>
+            <div class="btn">
+            <button type="submit" class="btn1">Sign In</button>
+        </div>
+            <div class="forgot-c">
+                <a href="mailto:support@zentrades.pro?subject=Password%20Reset%20Request" class="forgot">Forgot your password? </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+     const passwordInput = document.getElementById('passwordInput');
+
+    passwordInput.addEventListener('input', function() {
+        const password = passwordInput.value;
+        const containsUpperCase = /[A-Z]/.test(password);
+        const containsNumber = /[0-9]/.test(password);
+        const containsSpecial = /[^A-Za-z0-9@]/.test(password);
+
+        if (!containsUpperCase || !containsNumber || containsSpecial) {
+            // passwordError.textContent = "Password must contain an uppercase letter, a number, and only '@' as a special character.";
+            passwordInput.setCustomValidity("Invalid password");
+        } else {
+            // passwordError.textContent = '';
+            passwordInput.setCustomValidity('');
+        }
+    });
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  var password = document.getElementById("passwordInput").value;
+
+  // Check if the entered password matches the expected password
+  if (password === "ZenTradesTest@123") {
+    // Redirect the user to the dashboard page
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Incorrect password. Please try again.");
+  }
+});
+</script>
